@@ -1,0 +1,10 @@
+{
+  "name": "Processor D",
+  "team": "Team S3 Trotter",
+  "problem_statement": "PS-S3",
+  "num_qubits": 4,
+  "edges": [[0, 1], [1, 2], [2, 3], [3, 0]],
+  "basis_gates": ["rz", "sx", "x", "rzz"],
+  "error_rates": {"p1": 0.001, "p2": 0.005, "p_readout": 0.01},
+  "justification": "The measured bottleneck on this ring instance is two-qubit gate count. Processor A's tree has no 4-cycle, so the closing (3,0) bond forces routing: at n=8 it needs 15 SWAPs and 109 two-qubit gates against 64 logical ones, and its best step count is only 6. Processor B has a cycle and needs no routing, but its CX-RZ-CX construction still spends 64 gates at n=8. Processor D is therefore a four-qubit ring with a native RZZ basis: every bond sits on an edge and each ZZ evolution costs one gate (32 at n=8), half of B's count, which raises the best noisy fidelity from 0.663 (B, n*=7) to 0.753 (D, n*=8). The error rates are the official minimum (p1=0.001, p2=0.005, readout=0.01), so no calibration advantage is claimed. The trade-off accepted is a specialised four-qubit device with no spare qubits, whose RZZ gate is assumed to be as good as a CX."
+}
